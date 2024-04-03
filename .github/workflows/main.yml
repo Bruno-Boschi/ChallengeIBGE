@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    container:
+        image: kirschbaumdevelopment/laravel-test-runner:8.3
+
+    steps:   
+      # - uses: actions/checktou@v3
+      # with:
+        # fetch-depth:
+        - name: Teste
+          run: echo "teste um"
+     
