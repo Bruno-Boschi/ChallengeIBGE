@@ -14,7 +14,10 @@ jobs:
 
     steps:   
       - uses: actions/checkout@v3
-      - name: teste
-        run: echo "testando"
+      - name: Building Laravel
+        run: |
+          cp .env.exemple .env
+          composer install --no-progress --prefer-dist --optimize-autoloader
+          php artisan key:generate
 
      
