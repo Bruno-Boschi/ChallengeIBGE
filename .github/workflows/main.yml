@@ -13,9 +13,6 @@ jobs:
         image: kirschbaumdevelopment/laravel-test-runner:8.3
 
     steps:   
-      # - uses: actions/checktou@v3
-      # with:
-        # fetch-depth:
-        - name: Teste
-          run: echo "teste um"
+      - uses: actions/checktou@v3
+
      
