@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-
+use App\Models\State;
+use Illuminate\Support\Facades\Artisan;
 
 class RegisterStates extends Command
 {
@@ -46,6 +47,21 @@ class RegisterStates extends Command
 
         $states = json_decode($response->body());
 
-        dd($states);
+        foreach ($states as $state) {
+            State::updateOrCreate(
+                [
+                    'name' => $state->nome,
+                    'abbreviation' => $state->sigla,
+                    ],
+                [
+                    'name' => $state->nome,
+                    'abbreviation' => $state->sigla,
+                    ]
+            );
+        }
+
+        Artisan::call('RegisterCities');
+
+        return dump('OK');
     }
 }
