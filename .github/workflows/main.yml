@@ -11,13 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     container:
         image: kirschbaumdevelopment/laravel-test-runner:8.3
-
+    services:
+        postgres:
+            image: postgres
+            env:
+                POSTGRES_USER:  root
+                POSTGRES_PASSWORD:  root
+                POSTGRES_DB:  challengeribge
+            ports:
+                - 5432:5432
+            options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5s
     steps:   
       - uses: actions/checkout@v3
+        with:
+            fetch-depth: 1
       - name: Building Laravel
         run: |
-          cp .env.exemple .env
+          cp .env.example .env
           composer install --no-progress --prefer-dist --optimize-autoloader
           php artisan key:generate
+          php artisan migrate
 
      
