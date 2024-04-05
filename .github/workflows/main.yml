@@ -25,10 +25,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 1
-      - name: Building Laravel
+      - name: Config Env
+        run:  cp .env.example .env
+
+      - name: Install Composer
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Migrate
         run: |
-          cp .env.example .env
-          composer install --no-progress --prefer-dist --optimize-autoloader
           php artisan key:generate
           php artisan migrate
 
