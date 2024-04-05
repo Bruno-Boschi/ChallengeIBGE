@@ -15,8 +15,8 @@ jobs:
         postgres:
             image: postgres
             env:
-                POSTGRES_USER:  root
-                POSTGRES_PASSWORD:  root
+                POSTGRES_USER:  postgres
+                POSTGRES_PASSWORD:  docker
                 POSTGRES_DB:  challengeribge
             ports:
                 - 5432:5432
