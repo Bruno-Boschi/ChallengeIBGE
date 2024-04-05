@@ -33,6 +33,8 @@ jobs:
 
       - name: Migrate
         run: |
+          php artisan optimize
+          php artisan optimize:clear
           php artisan key:generate
           php artisan migrate
 
